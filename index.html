@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHALAH WA Unban</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  body {
+    font-family: 'Share Tech Mono', monospace;
+    background: #0d0d0d;
+    color: #00ffcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background: #111;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 20px #00ffcc;
+  }
+  h2 {
+    text-align: center;
+    color: #00ffcc;
+    margin-bottom: 20px;
+  }
+  select, input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    border: 1px solid #00ffcc;
+    background: #111;
+    color: #00ffcc;
+  }
+  button {
+    cursor: pointer;
+    background: linear-gradient(to right, #00ffcc, #009999);
+    color: #111;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: linear-gradient(to right, #009999, #00ffcc);
+  }
+  textarea {
+    height: 160px;
+    resize: none;
+    color: #fff;
+    background: #000;
+  }
+  option {
+    background: #111;
+    color: #00ffcc;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>CHALAH WA UNBAN</h2>
+
+  <label>PHONE_NUMBER:</label>
+  <input type="text" id="number" placeholder="+94">
+
+  <label>BAN_TYPE:</label>
+  <select id="banType">
+    <option value="">Select ban type</option>
+    <option value="Permanent">Permanent</option>
+    <option value="Temporary">Temporary</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label>REASON:</label>
+  <select id="reason">
+    <option value="">Select reason</option>
+    <option value="Schoolwork">Schoolwork</option>
+    <option value="Work">Work</option>
+    <option value="Mistaken Ban">Mistaken Ban</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label>UNBAN_VERSION (v1-v10):</label>
+  <select id="scriptVersion">
+    <option value="">Select Unban Version</option>
+    <option value="v1">Unban v1</option>
+    <option value="v2">Unban v2</option>
+    <option value="v3">Unban v3</option>
+    <option value="v4">Unban v4</option>
+    <option value="v5">Unban v5</option>
+    <option value="v6">Unban v6</option>
+    <option value="v7">Unban v7</option>
+    <option value="v8">Unban v8</option>
+    <option value="v9">Unban v9</option>
+    <option value="v10">Unban v10</option>
+  </select>
+
+  <button onclick="generateMessage()">🚀 INITIATE UNBAN PROTOCOL</button>
+  <button onclick="sendEmail()">📧 Send Email to WhatsApp Support</button>
+
+  <textarea id="generatedMessage" readonly placeholder="Generated unban message will appear here..."></textarea>
+</div>
+
+<script>
+function generateMessage(){
+  const number = document.getElementById('number').value.trim();
+  const banType = document.getElementById('banType').value;
+  const reason = document.getElementById('reason').value;
+  const script = document.getElementById('scriptVersion').value;
+
+  if(!number || !banType || !reason || !script){
+    alert("Please fill all fields!");
+    return;
+  }
+
+  const scripts = {
+    v1: `My WhatsApp account ${number} was mistakenly banned. This account is important for ${reason}. Please review and unblock it.`,
+    v2: `Dear WhatsApp Support, my account ${number} has been disabled. I rely on it for ${reason}. Kindly lift the ban.`,
+    v3: `I cannot access my WhatsApp account ${number} which I use for ${reason}. Please help me restore it as soon as possible.`,
+    v4: `Hello, my account ${number} seems to be banned. This is my primary account for ${reason}. Please unblock it.`,
+    v5: `My account ${number} has been disabled unexpectedly. I need it for ${reason}. Requesting immediate unban.`,
+    v6: `I am unable to access my WhatsApp account ${number} related to ${reason}. Please review and remove the ban so I can continue my work.`,
+    v7: `WhatsApp team, my account ${number} is banned. I need it for ${reason}. Please unblock my account urgently.`,
+    v8: `I rely on my WhatsApp account ${number} for ${reason}. The ban is affecting my tasks. Kindly help me recover it.`,
+    v9: `My account ${number} is currently banned, and it is crucial for ${reason}. I request the support team to unblock it immediately.`,
+    v10: `Dear WhatsApp Support, my WhatsApp account ${number} has been disabled. This account contains all my ${reason}. Please unblock it at the earliest.`
+  };
+
+  document.getElementById('generatedMessage').value = scripts[script];
+}
+
+function sendEmail() {
+  const number = document.getElementById('number').value.trim();
+  const banType = document.getElementById('banType').value;
+  const reason = document.getElementById('reason').value;
+  const script = document.getElementById('scriptVersion').value;
+  const message = document.getElementById('generatedMessage').value;
+
+  if(!number || !banType || !reason || !script){
+    alert("Please fill all fields before sending email!");
+    return;
+  }
+
+  const supportEmail = "support@whatsapp.com";
+  const subject = encodeURIComponent(`Request to Unban WhatsApp Account: ${number}`);
+  const body = encodeURIComponent(message);
+
+  window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+}
+</script>
+</body>
+</html>
